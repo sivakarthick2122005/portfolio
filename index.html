@@ -629,8 +629,7 @@
               Want to <span class="gradient-text">talk?</span>
             </h2>
             <p class="section-subtitle">
-              Whether it's a job opportunity, a project idea, or just a conversation — I'm all ears. No contact forms,
-              just direct links.
+              Whether it's a job opportunity, a project idea, or just a conversation — I'm all ears. Drop a message below or reach out directly.
             </p>
           </div>
 
@@ -664,14 +663,27 @@
         <div class="contact-cta reveal reveal-delay-2">
           <div class="contact-cta-content">
             <span class="contact-cta-emoji">👋</span>
-            <h3>Say hi !</h3>
-            <a href="mailto:s.sivakarthick2005@gmail.com" class="btn-primary">
-              <span>Email Me</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
-              </svg>
-            </a>
+            <h3>Drop me a message</h3>
+            <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form">
+              <input type="hidden" name="form-name" value="contact" />
+              <p style="display:none;"><label>Don't fill this out: <input name="bot-field" /></label></p>
+              <div class="form-group">
+                <input type="text" name="name" placeholder="Your Name" required />
+              </div>
+              <div class="form-group">
+                <input type="email" name="email" placeholder="Your Email" required />
+              </div>
+              <div class="form-group">
+                <textarea name="message" rows="4" placeholder="Your Message..." required></textarea>
+              </div>
+              <button type="submit" class="btn-primary">
+                <span>Send Message</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+                </svg>
+              </button>
+            </form>
 
             <div class="contact-socials">
               <a href="mailto:s.sivakarthick2005@gmail.com" class="social-link" aria-label="Email" title="Email">
