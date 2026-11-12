@@ -347,3 +347,55 @@ function createParticles() {
 
   heroObserver.observe(heroSection);
 }
+
+/* ===================================================
+   CONTACT FORM (AJAX / Netlify Forms)
+   =================================================== */
+const contactForm = document.querySelector('.contact-form');
+if (contactForm) {
+  contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const submitBtn = document.getElementById('formSubmitBtn');
+    const statusDiv = document.getElementById('formStatus');
+    const originalBtnContent = submitBtn ? submitBtn.innerHTML : '';
+
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>Sending...</span>';
+    }
+
+    const formData = new FormData(contactForm);
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(formData).toString()
+    })
+    .then(response => {
+      if (response.ok) {
+        if (statusDiv) {
+          statusDiv.style.display = 'block';
+          statusDiv.style.color = '#34d399';
+          statusDiv.textContent = '🎉 Message sent successfully! I will get back to you soon.';
+        }
+        contactForm.reset();
+      } else {
+        throw new Error('Form submission failed');
+      }
+    })
+    .catch(error => {
+      if (statusDiv) {
+        statusDiv.style.display = 'block';
+        statusDiv.style.color = '#f43f5e';
+        statusDiv.textContent = '❌ Oops! There was an issue sending your message. Please reach out directly via email.';
+      }
+    })
+    .finally(() => {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnContent;
+      }
+    });
+  });
+}
+
